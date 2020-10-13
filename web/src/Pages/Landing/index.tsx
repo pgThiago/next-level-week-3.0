@@ -1,12 +1,15 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import '../../styles/global.css';
 import '../../styles/pages/landing.css';
 
-import logoImg from './images/logo.svg';
+import logoImg from '../../images/logo.svg';
 import { FiArrowRight } from 'react-icons/fi';
 
 const Landing: React.FC = () => {
+
   return (
     <div id="page-landing">
       
@@ -31,9 +34,9 @@ const Landing: React.FC = () => {
 
         </div>
 
-        <a href="#" className="enter-app">
+        <Link to="/app" className="enter-app">
           <FiArrowRight size={20} color="rgba(0, 0, 0, 0.6)" />
-        </a>
+        </Link>
 
       </div>
 
