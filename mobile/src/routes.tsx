@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import OrphanagesMap from './pages/OrphanagesMap';
-import OrphanagesDetails from './pages/OrphanagesDetails';
+import OrphanageDetails from './pages/OrphanageDetails';
 
 const routes: React.FC = () => {
 
@@ -14,7 +14,7 @@ const routes: React.FC = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="OrphanagesMap" component={OrphanagesMap} />
-        <Stack.Screen name="OrphanagesDetails" component={OrphanagesDetails} />
+        <Stack.Screen name="OrphanageDetails" component={OrphanageDetails} />
       </Stack.Navigator>
   </NavigationContainer>
   );

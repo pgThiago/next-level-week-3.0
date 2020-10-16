@@ -53,6 +53,10 @@ const styles = StyleSheet.create({
       height: 56,
       backgroundColor: '#15c3d6',
       borderRadius: 20,
+
+      justifyContent: 'center',
+      alignItems: 'center',
+
     }
   });
   
