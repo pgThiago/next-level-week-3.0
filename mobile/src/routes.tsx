@@ -8,8 +8,7 @@ import OrphanageDetails from './pages/OrphanageDetails';
 
 import OrphanageData from './pages/CreateOrphanage/OrphanageData';
 import SelectMapPosition from './pages/CreateOrphanage/SelectMapPosition';
-import { Header } from 'react-native/Libraries/NewAppScreen';
-
+import Header from './components/Header';
 const routes: React.FC = () => {
 
   const Stack = createStackNavigator();
