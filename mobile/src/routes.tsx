@@ -33,7 +33,7 @@ const routes: React.FC = () => {
         component={OrphanageData} 
         options={{
           headerShown: true,
-          header: () => <Header title="Selecione no mapa" />
+          header: () => <Header title="Informe os dados" />
         }}
 
         />
@@ -43,7 +43,7 @@ const routes: React.FC = () => {
         component={SelectMapPosition} 
         options={{
           headerShown: true,
-          header: () => <Header title="Informe os dados" />
+          header: () => <Header title="Selecione no mapa" />
         }}
 
         />

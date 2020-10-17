@@ -28,6 +28,8 @@ export default function OrphanageData() {
 
   const { navigate } = useNavigation();
 
+
+
   async function handleCreateOrphanage(){
     const { latitude, longitude } = params.position;
     const data = new FormData();
@@ -140,6 +142,7 @@ export default function OrphanageData() {
         <Switch 
           thumbColor="#fff" 
           trackColor={{ false: '#ccc', true: '#39CC83' }}
+          value={open_on_weekends}
           onValueChange={setOpenOnWeekends}
         />
       </View>

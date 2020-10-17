@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ( { title, showCancel = true } ) => {
   const { goBack, navigate } = useNavigation();
 
   function handleToHome(){
-    navigate('OrphanagesMaps');
+    navigate('OrphanagesMap');
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
 import MapView, { Marker, Callout , PROVIDER_GOOGLE } from 'react-native-maps';
@@ -10,6 +10,8 @@ import styles from './styles';
 
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
+
+import * as Location from 'expo-location';
 
 import api from '../../services/api';
 
@@ -24,6 +26,33 @@ const OrphanagesMap: React.FC = () => {
 
   const { navigate } = useNavigation();
   const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
+
+  const [ initialLocation, setInitialLocation ] = useState({
+    initialLatitude: 0,
+    initialLongitude: 0,
+  });
+
+  useEffect(() => {
+    async function getUserInitialPosition(){
+      const { status } = await Location.requestPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Permission to access location was denied');
+      }
+
+      const location = await Location.getCurrentPositionAsync({});
+
+      const { latitude, longitude } = location.coords;
+
+      setInitialLocation({
+        initialLatitude: latitude,
+        initialLongitude: longitude,
+      });
+
+    }
+
+    getUserInitialPosition();
+
+  }, [initialLocation.initialLatitude, initialLocation.initialLatitude]);
 
   useFocusEffect(() => {
     
@@ -47,12 +76,15 @@ const OrphanagesMap: React.FC = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <MapView 
+      
+      {
+        initialLocation.initialLatitude !== 0 && (
+          <MapView 
       provider={PROVIDER_GOOGLE}
       style={styles.map} 
       initialRegion={{ 
-        latitude: -27.2092052,
-        longitude: -49.6401092,
+        latitude: initialLocation.initialLatitude,
+        longitude: initialLocation.initialLongitude,
         latitudeDelta: 0.008,
         longitudeDelta: 0.008
       }}      
@@ -79,6 +111,8 @@ const OrphanagesMap: React.FC = () => {
         )) }
 
       </MapView>
+        )
+      }
 
       <View style={styles.footer}>
 

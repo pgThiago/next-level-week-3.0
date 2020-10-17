@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Dimensions, Text } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,8 @@ import MapView, { MapEvent, Marker } from 'react-native-maps';
 
 import mapMarkerImg from '../../../images/map-marker.png';
 
+import * as Location from 'expo-location';
+
 export default function SelectMapPosition() {
   const navigation = useNavigation();
 
@@ -14,6 +16,35 @@ export default function SelectMapPosition() {
     latitude: 0,
     longitude: 0,
   });
+
+  const [ initialLocation, setInitialLocation ] = useState({
+    initialLatitude: 0,
+    initialLongitude: 0,
+  });
+  
+  useEffect(() => {
+    async function getUserInitialPosition(){
+      const { status } = await Location.requestPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Permission to access location was denied');
+      }
+
+      const location = await Location.getCurrentPositionAsync({});
+
+      const { latitude, longitude } = location.coords;
+
+      setInitialLocation({
+        initialLatitude: latitude,
+        initialLongitude: longitude,
+      });
+
+    }
+
+    getUserInitialPosition();
+
+  }, [initialLocation.initialLatitude, initialLocation.initialLatitude]);
+
+
 
   function handleNextStep() {
     navigation.navigate('OrphanageData', { position });
@@ -25,11 +56,13 @@ export default function SelectMapPosition() {
 
   return (
     <View style={styles.container}>
-      <MapView 
+      {
+        initialLocation.initialLatitude !== 0 && (
+          <MapView 
         onPress={handleSelectMapPosition}
         initialRegion={{
-          latitude: position.latitude,
-          longitude: position.longitude,
+          latitude: initialLocation.initialLatitude,
+          longitude: initialLocation.initialLongitude,
           latitudeDelta: 0.008,
           longitudeDelta: 0.008,
         }}
@@ -42,6 +75,8 @@ export default function SelectMapPosition() {
           />
         ) }
       </MapView>
+        )
+      }
 
       { position.latitude !== 0 && (
 
