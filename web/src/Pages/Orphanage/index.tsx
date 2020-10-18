@@ -11,6 +11,7 @@ import api from '../../services/api';
 
 interface Orphanage {
   name: string;
+  whatsapp: string;
   latitude: number;
   longitude: number;
   about: string;
@@ -129,9 +130,11 @@ export default function Orphanage() {
               )}
             </div>
 
-            <button type="button" className="contact-button">
+            <button type="button" className="contact-button" >
               <FaWhatsapp size={20} color="#FFF" />
-              Entrar em contato
+              <a href={`https://wa.me/+55${orphanage.whatsapp}`}>
+                Entrar em contato
+              </a> 
             </button>
           </div>
         </div>
