@@ -44,6 +44,7 @@ export default {
         const orphanagesRepository = getRepository(Orphanage);
 
         const requestImages = request.files as Express.Multer.File[];
+        console.log('request: ', request);
 
         const images = requestImages.map(image => {
             return { path: image.filename }
