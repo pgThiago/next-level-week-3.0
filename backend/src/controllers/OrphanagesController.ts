@@ -33,6 +33,7 @@ export default {
     async create(request: Request, response: Response){    
         const {
             name,
+            whatsapp,
             latitude,
             longitude,
             about,
@@ -44,7 +45,6 @@ export default {
         const orphanagesRepository = getRepository(Orphanage);
 
         const requestImages = request.files as Express.Multer.File[];
-        console.log('request: ', request);
 
         const images = requestImages.map(image => {
             return { path: image.filename }
@@ -52,6 +52,7 @@ export default {
 
         const data = {
             name,
+            whatsapp,
             latitude,
             longitude,
             about,
@@ -63,6 +64,7 @@ export default {
 
         const schema = Yup.object().shape({
             name: Yup.string().required(),
+            whatsapp: Yup.string().required(),
             latitude: Yup.number().required(),
             longitude: Yup.number().required(),
             about: Yup.string().required().max(300),
