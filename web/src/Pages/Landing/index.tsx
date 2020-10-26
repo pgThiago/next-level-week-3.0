@@ -15,7 +15,16 @@ const Landing: React.FC = () => {
       
       <div className="content-wrapper">
 
-        <img src={logoImg} alt="Happy"/>
+        <div className="logo">
+          
+          <img src={logoImg} alt="Happy"/>
+          
+          <div className="place">
+            <strong>Ananindeua</strong>
+            <span>Pará</span>
+          </div>
+
+        </div>
 
         <main>
 
@@ -25,12 +34,14 @@ const Landing: React.FC = () => {
             de muitas crianças.
           </p>
 
+
         </main> 
 
         <div className="location">
 
-          <strong>Ananindeua</strong>
-          <span>Pará</span>
+          <Link to="Dashboard" className="go-to-dashboard-button">
+            Acesso restrito
+          </Link>
 
         </div>
 
