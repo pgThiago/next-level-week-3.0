@@ -39,7 +39,7 @@ const Landing: React.FC = () => {
 
         <div className="location">
 
-          <Link to="Dashboard" className="go-to-dashboard-button">
+          <Link to="/login" className="go-to-login-button">
             Acesso restrito
           </Link>
 

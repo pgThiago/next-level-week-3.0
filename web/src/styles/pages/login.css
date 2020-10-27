@@ -1,0 +1,224 @@
+.container {
+    display: grid;
+    grid-template-columns: 60vw 40vw;
+    grid-template-rows: 100vh;
+}
+
+.container main {
+    width: 100%;
+    height: 100%;
+    background-color: #12D4E0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container main .place{
+    width: 20%;
+    height: 20%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    margin-top: 50px;
+}
+
+
+.container main .place strong{
+
+    font-family: Nunito;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+
+}
+
+.container aside {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    position: relative;
+}
+
+.container aside .back-icon {
+    position: absolute;
+    top: 40px;
+    right: 43px;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: #EBF2F5;
+    
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.container aside .form-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 360px;
+    height: 430px;
+
+    position: relative;
+}
+
+.container aside .form-container h2{
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 34px;
+    /* identical to box height, or 106% */
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /* Texts / Base */
+
+    color: #5C8599;
+}
+
+.container aside .form-container label {
+
+    align-self: flex-start;
+
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */    
+    /* Texts / Complementos */
+    color: #8FA7B3;
+
+    margin-bottom: 5px;
+}
+
+.container aside .form-container input[type=text] {
+    padding: 10px;
+    font-size: 20px;
+    color: #000000;
+
+    width: 360px;
+    height: 64px;
+
+    background: #F5F8FA;
+    /* Back / Lines in white */
+    
+    border: 1px solid #D3E2E5;
+    box-sizing: border-box;
+    border-radius: 20px;    
+
+    margin-bottom: 20px
+    
+}
+
+.container aside .form-container input[type=password] {
+    padding: 10px;
+    font-size: 20px;
+    color: #000000;
+
+    width: 360px;
+    height: 64px;
+
+    background: #F5F8FA;
+    /* Back / Lines in white */
+    
+    border: 1px solid #D3E2E5;
+    box-sizing: border-box;
+    border-radius: 20px;    
+}
+
+.container aside .form-container .checkbox-container {
+    width: 100%;
+    height: 15%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+}
+
+.container aside .form-container .checkbox-container .checkbox {
+    position: absolute;
+    left: 0;   
+}
+
+.container aside .form-container .checkbox-container p {
+    margin-left: 20px;   
+    color: #8FA7B3;
+}
+
+.container aside .form-container .checkbox-container .forgot-password {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    text-decoration: none;
+    /* identical to box height */
+    /* Texts / Complementos */
+    color: #8FA7B3;
+
+    position: absolute;
+    right: 0;
+}
+
+.container aside .form-container .submit-button {
+
+    width: 360px;
+    height: 64px;
+    left: 1000px;
+    top: 561px;
+
+    opacity: 0.5;
+    
+    background: #37C77F;
+    
+    /* Color / Green */
+    
+    
+    border-radius: 20px;
+    border: none;
+    
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+    text-align: center;
+    
+    /* Texts / Botão */
+    
+    color: #FFFFFF;
+}
+
+.container aside .form-container .submit-button:hover {
+    background: #12D4E0;
+    color: #FFFFFF;
+}
+
+.container aside .form-container:valid .submit-button{
+    opacity: 1;
+}
