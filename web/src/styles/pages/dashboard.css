@@ -24,12 +24,12 @@
 
 .container aside #map-pin {
     position: fixed;
-    top: 40vh;
+    top: 41vh;
 }
 
 .container aside #alert-circle {
     position: fixed;
-    bottom: 40vh;
+    bottom: 41vh;
 }
 
 .container aside #log-out {
