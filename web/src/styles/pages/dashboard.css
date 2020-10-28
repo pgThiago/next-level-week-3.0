@@ -1,0 +1,148 @@
+.container {
+    display: grid;
+    grid-template-columns: 7vw 88vw;
+    grid-template-rows: auto;
+}
+
+.container aside {
+    background-color: #12D4E0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    position: relative;
+}
+
+.container aside #map-marker {
+    position: fixed;
+    top: 5vh;
+
+    width: 50px;
+    height: 50px;
+}
+
+.container aside #map-pin {
+    position: fixed;
+    top: 40vh;
+}
+
+.container aside #alert-circle {
+    position: fixed;
+    bottom: 40vh;
+}
+
+.container aside #log-out {
+    position: fixed;
+    bottom: 5vh;
+}
+
+.container main {
+    background-color: #EBF2F5;
+}
+
+.container main header {
+    width: 1120px;
+
+    margin-top: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    border-bottom: 2px solid #D3E2E5;
+
+    margin-bottom: 10vh;
+}
+
+.container main header h1 {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 34px;
+    /* identical to box height, or 106% */
+    /* Texts / Títulos */
+    color: #4D6F80;
+}
+
+.container main header p {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+    text-align: right;
+    /* Texts / Complementos */
+    color: #8FA7B3;
+}
+
+.container main .orphanage-grid {    
+    display: grid;
+    grid-template-columns: 40vw 40vw;
+    grid-template-rows: auto;
+
+    grid-column-gap: 1vw;
+    grid-row-gap: 3vh;
+}
+
+.container main .orphanage-grid .orphanage-item .map-styles {
+    border-radius: 20px;
+}
+
+.container main .orphanage-grid .orphanage-item {
+    border-radius: 20px;
+    background-color:#FFFFFF;
+}
+
+.container main .orphanage-grid .orphanage-item .orphanage-item-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    height: 10vh;
+}
+
+.container main .orphanage-grid .orphanage-item .orphanage-item-footer p {
+
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 34px;
+    /* identical to box height, or 142% */
+    /* Texts / Títulos */
+    color: #4D6F80;
+
+    padding: 10px;
+
+}
+
+.container main .orphanage-grid .orphanage-item .orphanage-item-footer .buttons {
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    width: 80px;
+    height: 40px;
+
+    margin-right: 10px;
+}
+
+.container main .orphanage-grid .orphanage-item .orphanage-item-footer .buttons button {
+    border: none;    
+    border-radius: 10px;
+
+    margin: 3px;
+
+    width: 60px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
