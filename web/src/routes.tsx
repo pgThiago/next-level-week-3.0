@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import DashboardPending from './pages/DashboardPending';
 import DeleteOrphanagePage from './pages/DeleteOrphanagePage';
+import SuccessfullySubmittedFormPage from './pages/SuccessfullySubmittedFormPage';
 import ForgotPassword from './pages/ForgotPassword';
 import SetNewPassword from './pages/SetNewPassword';
 
@@ -18,6 +19,7 @@ const Routes: React.FC = () => {
         <BrowserRouter>
             <Switch>
                 <Route exact path="/delete-orphanage-page" component={DeleteOrphanagePage} />
+                <Route exact path="/successfully-submitted" component={SuccessfullySubmittedFormPage} />
                 <Route exact path="/pending-orphanages" component={DashboardPending} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/forgot-password" component={ForgotPassword} />

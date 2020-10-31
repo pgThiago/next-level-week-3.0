@@ -1,0 +1,79 @@
+.successfully-submitted-page-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #37C77F;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.successfully-submitted-page-container .text-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    margin-bottom: 7rem;
+    margin-right: 7rem;
+
+    width: 25rem;
+
+}
+
+.successfully-submitted-page-container .text-side .delete-button {
+    text-decoration: none;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 80px;
+    line-height: 80px;
+    /* identical to box height, or 100% */
+    text-align: center;
+    /* Texts / Botão */
+    color: #FFFFFF;
+    margin-bottom: 2rem;
+}
+
+.successfully-submitted-page-container .text-side span {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 34px;
+    /* or 142% */
+    text-align: center;
+    /* Texts / Botão */
+    color: #FFFFFF;
+
+    margin-bottom: 3rem;
+}
+
+.successfully-submitted-page-container .text-side .back-to-map-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 25px;
+    /* identical to box height, or 139% */
+    text-align: center;
+    text-decoration: none;
+    /* Shapes / 01 */
+    color: #FFFFFF;   
+    
+    border: none;
+    border-radius: 20px;
+    
+    width: 243px;
+    height: 64px;
+
+    background-color: #31B272;
+}
+
+.successfully-submitted-page-container .text-side .back-to-map-button {
+    background-color: #3BD689;
+}
+
