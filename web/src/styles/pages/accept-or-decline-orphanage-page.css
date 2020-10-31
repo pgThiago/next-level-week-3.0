@@ -1,0 +1,60 @@
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+form.create-orphanage-form button.decline-button {
+    margin-top: 50px;
+  
+    width: 45%;
+    height: 64px;
+    border: 0;
+    cursor: pointer;
+    background: #FF669D;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-weight: 800;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    transition: background-color 0.2s;
+}
+
+
+form.create-orphanage-form button.accept-button {
+    margin-top: 50px;
+  
+    width: 45%;
+    height: 64px;
+    border: 0;
+    cursor: pointer;
+    background: #3CDC8C;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-weight: 800;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    transition: background-color 0.2s;
+}
+
+form.create-orphanage-form button.decline-button svg {
+    margin-right: 16px;
+}
+
+form.create-orphanage-form button.accept-button svg {
+    margin-right: 16px;
+}
+
+form.create-orphanage-form button.confirm-button:hover {
+    opacity: 0.5;
+}
+
+form.create-orphanage-form button.confirm-button:hover {
+    opacity: 0.5;
+}

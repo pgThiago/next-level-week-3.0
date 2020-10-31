@@ -23,7 +23,7 @@ const DeleteOrphanagePage: React.FC = () => {
       </div>
 
       <div>
-        <img src={logoDeleteOrphanage} alt="logo delete orphanage image"/>
+        <img src={logoDeleteOrphanage} alt="logo delete orphanage"/>
       </div>
 
     </div>

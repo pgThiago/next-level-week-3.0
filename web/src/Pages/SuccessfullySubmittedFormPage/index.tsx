@@ -23,7 +23,7 @@ const SuccessfullySubmittedFormPage: React.FC = () => {
       </div>
 
       <div>
-        <img src={logoSuccessfullySubmittedForm} alt="logo delete orphanage image"/>
+        <img src={logoSuccessfullySubmittedForm} alt="logo delete orphanage"/>
       </div>
 
     </div>
