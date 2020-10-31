@@ -6,34 +6,31 @@ import { Map, Marker, TileLayer } from "react-leaflet";
 import mapIcon from '../../utils/mapIcon';
 
 import mapMarker from '../../images/map-marker.svg';
-import alertCircle from '../../images/alert-circle.svg';
-import mapPin from '../../images/map-pin.svg';
+import yellowAlertCircle from '../../images/yellow-alert-circle.svg';
+import mapPin from '../../images/map-pin-pending.svg';
 import logOut from '../../images/log-out.svg';
 import edit from '../../images/edit.svg';
 import trash from '../../images/trash.svg';
-import alertCircleElilipse from '../../images/alert-circle-ellipse.svg';
-
 
 import '../../styles/global.css';
 import '../../styles/pages/dashboard.css';
 
-const Dashboard: React.FC = () => {
+const DashboardPending: React.FC = () => {
   return (
     
-    <div className="dashboard-container">
+    <div className="container">
 
       <aside>
         <Link to="/"><img src={mapMarker}   alt="map-marker"  id="map-marker" />   </Link>
         <Link to="/"><img src={mapPin}      alt="map-pin"     id="map-pin" />      </Link>
-        <img src={alertCircleElilipse}      alt="alert-circle-ellipse"     id="alert-circle-ellipse" />
-        <Link to="/"><img src={alertCircle} alt="alert-circle"id="alert-circle" /> </Link>
+        <Link to="/"><img src={yellowAlertCircle} alt="alert-circle"id="alert-circle" /> </Link>
         <Link to="/"><img src={logOut}      alt="log-out"     id="log-out" />      </Link>
       </aside>
 
       <main>  
         
         <header>
-          <h1>Orfanatos Cadastrados</h1>
+          <h1>Cadastros pendentes</h1>
           <p>2 orfanatos</p>
         </header>
         
@@ -206,4 +203,4 @@ const Dashboard: React.FC = () => {
   );
 }
 
-export default Dashboard;
+export default DashboardPending;

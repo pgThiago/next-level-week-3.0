@@ -1,10 +1,10 @@
-.container {
+.dashboard-container {
     display: grid;
     grid-template-columns: 7vw 88vw;
     grid-template-rows: auto;
 }
 
-.container aside {
+.dashboard-container aside {
     background-color: #12D4E0;
     display: flex;
     align-items: center;
@@ -14,34 +14,45 @@
     position: relative;
 }
 
-.container aside #map-marker {
+.dashboard-container aside #map-marker {
     position: fixed;
     top: 5vh;
+    left: 2vw;
 
     width: 50px;
     height: 50px;
 }
 
-.container aside #map-pin {
+.dashboard-container aside #map-pin {
     position: fixed;
     top: 41vh;
+    left: 2vw;
 }
 
-.container aside #alert-circle {
+.dashboard-container aside #alert-circle-ellipse {
+    position: fixed;
+    bottom: 45.5vh;
+    left: 3.9vw;
+    z-index: 1;
+}
+
+.dashboard-container aside #alert-circle {
     position: fixed;
     bottom: 41vh;
+    left: 2vw;
 }
 
-.container aside #log-out {
+.dashboard-container aside #log-out {
     position: fixed;
     bottom: 5vh;
+    left: 2vw;
 }
 
-.container main {
+.dashboard-container main {
     background-color: #EBF2F5;
 }
 
-.container main header {
+.dashboard-container main header {
     width: 1120px;
 
     margin-top: 50px;
@@ -55,7 +66,7 @@
     margin-bottom: 10vh;
 }
 
-.container main header h1 {
+.dashboard-container main header h1 {
     font-family: Nunito;
     font-style: normal;
     font-weight: bold;
@@ -66,7 +77,7 @@
     color: #4D6F80;
 }
 
-.container main header p {
+.dashboard-container main header p {
     font-family: Nunito;
     font-style: normal;
     font-weight: 600;
@@ -78,7 +89,7 @@
     color: #8FA7B3;
 }
 
-.container main .orphanage-grid {    
+.dashboard-container main .orphanage-grid {    
     display: grid;
     grid-template-columns: 40vw 40vw;
     grid-template-rows: auto;
@@ -87,16 +98,16 @@
     grid-row-gap: 3vh;
 }
 
-.container main .orphanage-grid .orphanage-item .map-styles {
+.dashboard-container main .orphanage-grid .orphanage-item .map-styles {
     border-radius: 20px;
 }
 
-.container main .orphanage-grid .orphanage-item {
+.dashboard-container main .orphanage-grid .orphanage-item {
     border-radius: 20px;
     background-color:#FFFFFF;
 }
 
-.container main .orphanage-grid .orphanage-item .orphanage-item-footer {
+.dashboard-container main .orphanage-grid .orphanage-item .orphanage-item-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -105,7 +116,7 @@
     height: 10vh;
 }
 
-.container main .orphanage-grid .orphanage-item .orphanage-item-footer p {
+.dashboard-container main .orphanage-grid .orphanage-item .orphanage-item-footer p {
 
     font-family: Nunito;
     font-style: normal;
@@ -120,7 +131,7 @@
 
 }
 
-.container main .orphanage-grid .orphanage-item .orphanage-item-footer .buttons {
+.dashboard-container main .orphanage-grid .orphanage-item .orphanage-item-footer .buttons {
     
     display: flex;
     align-items: center;
@@ -132,7 +143,7 @@
     margin-right: 10px;
 }
 
-.container main .orphanage-grid .orphanage-item .orphanage-item-footer .buttons button {
+.dashboard-container main .orphanage-grid .orphanage-item .orphanage-item-footer .buttons button {
     border: none;    
     border-radius: 10px;
 
