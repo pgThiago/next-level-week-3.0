@@ -32,8 +32,8 @@ const Routes: React.FC = () => {
                 <Route exact path="/orphanages/edit/:id" component={EditOrphanagePage} />
                 
                 <Route exact path="/successfully-submitted" component={SuccessfullySubmittedFormPage} />
-                <Route exact path="/accepted-or-decline" component={AcceptOrDeclineOrphanagePage} />
-                <Route exact path="/pending-orphanages" component={DashboardPending} />
+                <Route exact path="/dashboard/accept-or-decline" component={AcceptOrDeclineOrphanagePage} />
+                <Route exact path="/dashboard/pending-orphanages" component={DashboardPending} />
                 
                 <Route exact path="/forgot-password" component={ForgotPassword} />
                 <Route exact path="/new-password" component={SetNewPassword} />

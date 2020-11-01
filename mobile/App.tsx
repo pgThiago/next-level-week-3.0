@@ -10,11 +10,12 @@ function App() {
     Nunito_600SemiBold,
     Nunito_700Bold,
     Nunito_800ExtraBold
-  });
+  });  
 
-  if(!fontsLoaded)
+  if(!fontsLoaded){
     return null;
-
+  }    
+  
   else{
     return (
       <>

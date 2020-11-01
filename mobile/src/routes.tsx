@@ -9,16 +9,21 @@ import OrphanageDetails from './pages/OrphanageDetails';
 import OrphanageData from './pages/CreateOrphanage/OrphanageData';
 import SelectMapPosition from './pages/CreateOrphanage/SelectMapPosition';
 import Header from './components/Header';
+import Splash from './pages/SplashScreen';
+
 const routes: React.FC = () => {
 
   const Stack = createStackNavigator();
 
   return (
     <NavigationContainer>
+
       <Stack.Navigator 
       screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#f2f3f5' } }}>
        
+        <Stack.Screen name="SplashScreen" component={Splash} />
         <Stack.Screen name="OrphanagesMap" component={OrphanagesMap} />
+
         <Stack.Screen 
         options={{
           headerShown: true,
