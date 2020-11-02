@@ -10,6 +10,8 @@ import OrphanageData from './pages/CreateOrphanage/OrphanageData';
 import SelectMapPosition from './pages/CreateOrphanage/SelectMapPosition';
 import Header from './components/Header';
 import Splash from './pages/SplashScreen';
+import OnBoardingOne from './pages/OnBoarding/OnBoardingOne';
+import OnBoardingTwo from './pages/OnBoarding/OnBoardingTwo';
 
 const routes: React.FC = () => {
 
@@ -22,6 +24,8 @@ const routes: React.FC = () => {
       screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#f2f3f5' } }}>
        
         <Stack.Screen name="SplashScreen" component={Splash} />
+        <Stack.Screen name="OnBoardingOne" component={OnBoardingOne} />
+        <Stack.Screen name="OnBoardingTwo" component={OnBoardingTwo} />
         <Stack.Screen name="OrphanagesMap" component={OrphanagesMap} />
 
         <Stack.Screen 

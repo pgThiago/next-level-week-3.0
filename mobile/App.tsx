@@ -19,7 +19,7 @@ function App() {
   else{
     return (
       <>
-        <StatusBar />
+        <StatusBar barStyle="dark-content" />
         <Routes />
       </>
     );
