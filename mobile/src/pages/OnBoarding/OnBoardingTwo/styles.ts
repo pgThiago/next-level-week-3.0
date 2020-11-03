@@ -3,38 +3,38 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   OnBoardingTwoContainer: {
-      flex: 1,
-      backgroundColor: '#F2F3F5',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '85%',
+    flex: 1,
+    backgroundColor: '#F2F3F5',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+    ilustraTwo: {
       alignSelf: 'center',
     },
 
-    ilustraTwo: {
-      flex: 1,
-      width: 220,
-      height: 230,
+    textContainer: {
+      width: 300,
+      alignSelf: 'flex-end'
     },
   
     mainText: {
-      fontFamily: 'Nunito_700Bold',
-      fontSize: 48,
+      fontFamily: 'Nunito_800ExtraBold',
+      fontSize: 30,
+      lineHeight: 36,
       color: '#0089A5',
-    },
-  
-    subText: {
-      fontFamily: 'Nunito_600SemiBold',
-      fontWeight: 'normal',
-      fontSize: 20,
-      color: '#5C8599',
-    },
+      textAlign: 'right',
+
+      marginTop: 45,
+      marginRight: 25,
+    }, 
 
     fiArrowRight: {
       backgroundColor: '#D1EDF2',
       alignSelf: 'flex-end',
       borderRadius: 20,
-      marginBottom: 10,
+      marginTop: 40,
+      marginRight: 25,
     },
 
   });

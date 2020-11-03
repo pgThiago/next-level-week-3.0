@@ -75,16 +75,15 @@ const OrphanagesMap: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
-      
+      <StatusBar backgroundColor="rgba(255, 255, 255, 0.1)" />
       {
         initialLocation.initialLatitude !== 0 && (
           <MapView 
-      provider={PROVIDER_GOOGLE}
-      style={styles.map} 
-      initialRegion={{ 
-        latitude: initialLocation.initialLatitude,
-        longitude: initialLocation.initialLongitude,
+          provider={PROVIDER_GOOGLE}
+          style={styles.map} 
+          initialRegion={{ 
+        latitude: 38.897994,
+        longitude: -77.036519,
         latitudeDelta: 0.008,
         longitudeDelta: 0.008
       }}      
@@ -94,7 +93,7 @@ const OrphanagesMap: React.FC = () => {
           calloutAnchor={{
             x: 2.7,
             y: 0.8
-          }}
+          }}  
           icon={MapMarker} 
           coordinate={{
             latitude: orphanage.latitude,
