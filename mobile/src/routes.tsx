@@ -28,7 +28,7 @@ const routes: React.FC = () => {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName="SuccessfullySubmittedPage"
+      <Stack.Navigator
       screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#f2f3f5' } }}>
        
         <Stack.Screen name="SplashScreen" component={Splash} />

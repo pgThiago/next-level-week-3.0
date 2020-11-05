@@ -13,7 +13,7 @@ const SuccessfullySubmittedPage: React.FC = () => {
   const { navigate } = useNavigation();
 
   function handleNavigate(){
-    navigate('CancelOrphanageCreationPage');
+    navigate('OrphanagesMap');
   }
 
   return (

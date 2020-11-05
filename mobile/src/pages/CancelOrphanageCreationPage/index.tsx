@@ -14,7 +14,7 @@ const CancelOrphanageCreationPage: React.FC = () => {
   const [ noIsPressed, setNoIsPressed ] = useState(false);
 
   function handleNavigate(){
-    navigate('SuccessfullySubmittedPage');
+    navigate('OrphanagesMap');
   }
 
   function toggleYesButtonColor(){
