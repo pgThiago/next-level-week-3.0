@@ -1,6 +1,6 @@
 import { getRepository, getConnection } from 'typeorm';
 import User from '../models/User';
-import { Request, response, Response } from 'express';
+import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 const saltRounds = 10;
@@ -111,7 +111,6 @@ export default {
         if(!userExists)
             return response.status(400).send({ message: "User not found!" });
 
-        
         const token = crypto.randomBytes(20).toString('hex');
 
         const now = new Date();
@@ -134,9 +133,8 @@ export default {
             if(error)
                 console.log('error: ', error);
             
-            return response.send({ message: 'Deu bom', token });
+            return response.send({ message: 'Token sent' });
         })
 
     }
-
 }
