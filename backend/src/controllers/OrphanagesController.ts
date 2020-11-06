@@ -1,6 +1,6 @@
-import { getRepository } from 'typeorm';
+import { getRepository, getConnection } from 'typeorm';
 import Orphanage from '../models/Orphanage';
-import { Request, Response } from 'express';
+import { request, Request, Response } from 'express';
 
 import orphanageView from '../views/orphanages_view';
 
@@ -12,7 +12,7 @@ export default {
         const orphanagesRepository = getRepository(Orphanage);
 
         const orphanages = await orphanagesRepository.find({
-            relations: ['images']
+            relations: ['images'], where: { pending: true }
         });
 
         return response.status(200).json(orphanageView.renderMany(orphanages));        
@@ -39,7 +39,8 @@ export default {
             about,
             instructions,
             opening_hours,
-            open_on_weekends
+            open_on_weekends,
+            pending
         } = request.body;
 
         const orphanagesRepository = getRepository(Orphanage);
@@ -58,6 +59,7 @@ export default {
             about,
             instructions,
             opening_hours,
+            pending,
             open_on_weekends: open_on_weekends === 'true',
             images
         };
@@ -71,6 +73,7 @@ export default {
             instructions: Yup.string().required(),
             opening_hours: Yup.string().required(),
             open_on_weekends: Yup.boolean().required(),
+            pending: Yup.boolean().required(),
             images: Yup.array(
                 Yup.object().shape({
                     path: Yup.string().required()
@@ -87,5 +90,19 @@ export default {
         await orphanagesRepository.save(orphanage);
 
         return response.status(201).json(orphanage);
-    }
+    },
+
+    async acceptOrphanage(request: Request, response: Response){
+
+        const { id } = request.params;
+
+        await getConnection()
+        .createQueryBuilder()
+        .update(Orphanage)
+        .set({ pending: true })
+        .where("id = :id", { id })
+        .execute();
+
+        return response.status(200).json({ ok: true });        
+    },
 }

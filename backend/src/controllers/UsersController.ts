@@ -1,4 +1,4 @@
-import { getRepository, getConnection } from 'typeorm';
+import { getRepository, getConnection, AdvancedConsoleLogger } from 'typeorm';
 import User from '../models/User';
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
@@ -81,9 +81,8 @@ export default {
         .getOne();
         
         if(!userExists)
-        return response.status(409).json({message: "User not found!"});
-        
-        
+            return response.status(409).json({message: "User not found!"});
+
         bcrypt.compare(password, userExists.password, function(err, result) {
             // result == true
             if(result){                              
@@ -135,6 +134,34 @@ export default {
             
             return response.send({ message: 'Token sent' });
         })
+    },
 
+    async setNewPassword(request: Request, response: Response) {
+
+        const { token, password } = request.body;
+
+        try{
+
+            bcrypt.genSalt(saltRounds, async function(err: any, salt: any) {
+                bcrypt.hash(password, salt, async function(err: any, hash: any) {
+              
+                    await getConnection()
+                    .createQueryBuilder()
+                    .update(User)
+                    .set({ password: hash })
+                    .where("passwordResetToken = :token", { token })
+                    .execute();     
+    
+                    return response.send({ok: true});
+                });
+            });
+
+
+        }
+        catch(error){
+            console.log(error);
+        }          
+       
     }
 }
+

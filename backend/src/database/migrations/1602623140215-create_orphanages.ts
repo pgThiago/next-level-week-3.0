@@ -52,9 +52,13 @@ export class createOrphanages1602623140215 implements MigrationInterface {
                     type: 'boolean',
                     default: false,
                 },
+                {
+                    name: 'pending',
+                    type: 'boolean',
+                    default: false,
+                },
             ]
         }))
-
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
