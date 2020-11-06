@@ -64,7 +64,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .container aside .form-container{
@@ -131,7 +130,7 @@
     
 }
 
-.container aside .form-container input[type=password] {
+.container aside .form-container input[type=current-password] {
     padding: 10px;
     font-size: 20px;
     color: #000000;

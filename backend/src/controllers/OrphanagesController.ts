@@ -1,6 +1,6 @@
 import { getRepository, getConnection } from 'typeorm';
 import Orphanage from '../models/Orphanage';
-import { request, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
 import orphanageView from '../views/orphanages_view';
 
@@ -13,6 +13,16 @@ export default {
 
         const orphanages = await orphanagesRepository.find({
             relations: ['images'], where: { pending: true }
+        });
+
+        return response.status(200).json(orphanageView.renderMany(orphanages));        
+    },
+
+    async indexPending(request: Request, response: Response){
+        const orphanagesRepository = getRepository(Orphanage);
+
+        const orphanages = await orphanagesRepository.find({
+            relations: ['images'], where: { pending: false }
         });
 
         return response.status(200).json(orphanageView.renderMany(orphanages));        
@@ -40,7 +50,6 @@ export default {
             instructions,
             opening_hours,
             open_on_weekends,
-            pending
         } = request.body;
 
         const orphanagesRepository = getRepository(Orphanage);
@@ -59,7 +68,7 @@ export default {
             about,
             instructions,
             opening_hours,
-            pending,
+            pending: false,
             open_on_weekends: open_on_weekends === 'true',
             images
         };
@@ -94,7 +103,7 @@ export default {
 
     async acceptOrphanage(request: Request, response: Response){
 
-        const { id } = request.params;
+        const { id } = request.body;
 
         await getConnection()
         .createQueryBuilder()

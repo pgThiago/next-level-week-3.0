@@ -11,6 +11,7 @@ const upload = multer(uploadConfig);
 
 
 routes.get('/orphanages', OrphanagesController.index);
+routes.get('/orphanages_pending', OrphanagesController.indexPending);
 routes.get('/orphanage/:id', OrphanagesController.show);
 routes.post('/orphanages', upload.array('images'), OrphanagesController.create);
 
@@ -20,6 +21,6 @@ routes.post('/authenticate', UsersController.login);
 routes.post('/forgot_password', UsersController.forgotPassword);
 routes.post('/new_password', UsersController.setNewPassword);
 
-routes.post('/accept_orphanage/:id', authMiddleware, OrphanagesController.acceptOrphanage);
+routes.post('/accept_orphanage/', authMiddleware, OrphanagesController.acceptOrphanage);
 
 export default routes;

@@ -1,10 +1,10 @@
-.dashboard-container {
+.pending-container {
     display: grid;
     grid-template-columns: 7vw 88vw;
     grid-template-rows: auto;
 }
 
-.dashboard-container aside {
+.pending-container aside {
     background-color: #12D4E0;
     display: flex;
     align-items: center;
@@ -16,7 +16,7 @@
     height: 100vh;
 }
 
-.dashboard-container aside #map-marker {
+.pending-container aside #map-marker {
     position: fixed;
     top: 5vh;
     left: 2vw;
@@ -25,38 +25,38 @@
     height: 50px;
 }
 
-.dashboard-container aside #map-pin {
+.pending-container aside #map-pin {
     position: fixed;
     top: 41vh;
     left: 2vw;
 }
 
-.dashboard-container aside #alert-circle-ellipse {
+.pending-container aside #alert-circle-ellipse {
     position: fixed;
     bottom: 45.5vh;
     left: 3.9vw;
     z-index: 1;
 }
 
-.dashboard-container aside #alert-circle {
+.pending-container aside #alert-circle {
     position: fixed;
     bottom: 41vh;
     left: 2vw;
 }
 
-.dashboard-container aside #log-out {
+.pending-container aside #log-out {
     position: fixed;
     bottom: 5vh;
     left: 2vw;
 }
 
-.dashboard-container main {
+.pending-container main {
     background-color: #EBF2F5;
     width: 1120px;
     margin-left: 4vw;
 }
 
-.dashboard-container main header {
+.pending-container main header {
     width: 1120px;
     
 
@@ -71,7 +71,7 @@
     margin-bottom: 10vh;
 }
 
-.dashboard-container main header h1 {
+.pending-container main header h1 {
     font-family: Nunito;
     font-style: normal;
     font-weight: bold;
@@ -82,7 +82,7 @@
     color: #4D6F80;
 }
 
-.dashboard-container main header p {
+.pending-container main header p {
     font-family: Nunito;
     font-style: normal;
     font-weight: 600;
@@ -94,7 +94,7 @@
     color: #8FA7B3;
 }
 
-.dashboard-container main .orphanage-grid {    
+.pending-container main .orphanage-grid {    
     display: grid;
     grid-template-columns: 40vw 40vw;
     grid-template-rows: auto;
@@ -103,16 +103,16 @@
     grid-row-gap: 4vh;
 }
 
-.dashboard-container main .orphanage-grid .orphanage-item .map-styles {
+.pending-container main .orphanage-grid .orphanage-item .map-styles {
     border-radius: 20px;
 }
 
-.dashboard-container main .orphanage-grid .orphanage-item {
+.pending-container main .orphanage-grid .orphanage-item {
     border-radius: 20px;
     background-color:#FFFFFF;
 }
 
-.dashboard-container main .orphanage-grid .orphanage-item .orphanage-item-footer {
+.pending-container main .orphanage-grid .orphanage-item .orphanage-item-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -121,7 +121,7 @@
     height: 10vh;
 }
 
-.dashboard-container main .orphanage-grid .orphanage-item .orphanage-item-footer p {
+.pending-container main .orphanage-grid .orphanage-item .orphanage-item-footer p {
 
     font-family: Nunito;
     font-style: normal;
@@ -136,7 +136,7 @@
 
 }
 
-.dashboard-container main .orphanage-grid .orphanage-item .orphanage-item-footer .buttons {
+.pending-container main .orphanage-grid .orphanage-item .orphanage-item-footer .buttons {
     
     display: flex;
     align-items: center;
@@ -148,24 +148,24 @@
     margin-right: 10px;
 }
 
-.dashboard-container main .orphanage-grid .orphanage-item .orphanage-item-footer .buttons button {
-    border: none;    
-    border-radius: 10px;
+.pending-container main .orphanage-grid .orphanage-item .orphanage-item-footer .buttons .next-icon {
 
-    margin: 3px;
+    margin-left: 25px;
 
-    width: 60px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+
+    background-color: #EBF2F5;
+    
+    border-radius: 15px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    cursor: pointer;
-    
 }
 
-.dashboard-container main .orphanage-grid .empty-area-container {
+
+.pending-container main .orphanage-grid .empty-area-container {
     position: relative;
     top: 50%;
     bottom: 50%;
@@ -178,7 +178,7 @@
     flex-direction: column;
 }
 
-.dashboard-container main .orphanage-grid .empty-area-container span{
+.pending-container main .orphanage-grid .empty-area-container span{
     font-family: Nunito;
     font-style: normal;
     font-weight: 600;

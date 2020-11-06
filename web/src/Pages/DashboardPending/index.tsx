@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { Map, Marker, TileLayer } from "react-leaflet";
 import mapIcon from '../../utils/mapIcon';
@@ -9,21 +9,51 @@ import mapMarker from '../../images/map-marker.svg';
 import yellowAlertCircle from '../../images/yellow-alert-circle.svg';
 import mapPin from '../../images/map-pin-pending.svg';
 import logOut from '../../images/log-out.svg';
-import edit from '../../images/edit.svg';
-import trash from '../../images/trash.svg';
+import emptyIcon from '../../images/empty-icon.svg';
 
 import '../../styles/global.css';
-import '../../styles/pages/dashboard.css';
+import '../../styles/pages/dashboard-pending.css';
+import { FiArrowRight } from 'react-icons/fi';
+
+import api from '../../services/api';
+
+interface Orphanage {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+}
 
 const DashboardPending: React.FC = () => {
+  
+  const history = useHistory();
+
+  const [ orphanages, setOrphanages ] = useState<Orphanage[]>([]);
+
+  const token = localStorage.getItem('token');
+  if(!token)
+    history.push('/');
+
+  useEffect(() => {
+    async function getOrphanages(){
+      
+      const response = await api.get('orphanages_pending');
+      setOrphanages(response.data);
+
+    }
+
+    getOrphanages();
+
+  }, []);
+
   return (
     
-    <div className="container">
+    <div className="pending-container">
 
       <aside>
-        <Link to="/"><img src={mapMarker}   alt="map-marker"  id="map-marker" />   </Link>
-        <Link to="/"><img src={mapPin}      alt="map-pin"     id="map-pin" />      </Link>
-        <Link to="/"><img src={yellowAlertCircle} alt="alert-circle"id="alert-circle" /> </Link>
+        <Link to="/orphanagesmap"><img src={mapMarker}   alt="map-marker"  id="map-marker" />   </Link>
+        <Link to="/dashboard"><img src={mapPin}      alt="map-pin"     id="map-pin" />      </Link>
+        <Link to="/dashboard/pending-orphanages"><img src={yellowAlertCircle} alt="alert-circle"id="alert-circle" /> </Link>
         <Link to="/"><img src={logOut}      alt="log-out"     id="log-out" />      </Link>
       </aside>
 
@@ -31,168 +61,50 @@ const DashboardPending: React.FC = () => {
         
         <header>
           <h1>Cadastros pendentes</h1>
-          <p>2 orfanatos</p>
+          <p>{orphanages.length} orfanatos</p>
         </header>
         
         <div className="orphanage-grid">
 
-          <div className="orphanage-item">
-            <Map  className="map-styles"
-              center={[-1.3225683,-48.3735674]} 
-              zoom={16} 
-              style={{ width: '100%', height: 280 }}
-              dragging={false}
-              touchZoom={false}
-              zoomControl={false}
-              scrollWheelZoom={false}
-              doubleClickZoom={false}
-            >
-              <TileLayer 
-                url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
-              />
-              <Marker interactive={false} icon={mapIcon} position={[-1.3225683,-48.3735674]} />
-            </Map>
-            
-            <div className="orphanage-item-footer">
-              <p>Orf. Esperança</p>
-              <div className="buttons">
-                <button type="button"><img src={edit} alt="edit button"/></button>
-                <button type="button"><img src={trash} alt="trash button"/></button>
+          {
+            orphanages.length !== 0 ? (
+            orphanages.map(orphanage => (
+            <div className="orphanage-item">
+              <Map 
+                className="map-styles"
+                center={[orphanage.latitude, orphanage.longitude]} 
+                zoom={16} 
+                style={{ width: '100%', height: 280 }}
+                dragging={false}
+                touchZoom={false}
+                zoomControl={false}
+                scrollWheelZoom={false}
+                doubleClickZoom={false}
+                key={orphanage.id}
+              >
+                <TileLayer 
+                  url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+                />
+                <Marker key={orphanage.id} interactive={false} icon={mapIcon} position={[orphanage.latitude, orphanage.longitude]} />
+              </Map>
+
+              <div className="orphanage-item-footer">
+              <p>{orphanage.name}</p>
+                <div className="buttons">
+                  <Link to={{ pathname: '/dashboard/accept-or-decline', state: { data: orphanage } }} className="next-icon" >
+                    <FiArrowRight size={20} color="#12D4E0"/>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="orphanage-item">
-            <Map 
-              className="map-styles"
-              center={[-1.3225683,-48.3735674]} 
-              zoom={16} 
-              style={{ width: '100%', height: 280 }}
-              dragging={false}
-              touchZoom={false}
-              zoomControl={false}
-              scrollWheelZoom={false}
-              doubleClickZoom={false}
-            >
-              <TileLayer 
-                url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
-              />
-              <Marker interactive={false} icon={mapIcon} position={[-1.3225683,-48.3735674]} />
-            </Map>
-
-            <div className="orphanage-item-footer">
-              <p>Melhores Amigos</p>
-              <div className="buttons">
-                <button type="button"><img src={edit} alt="edit button"/></button>
-                <button type="button"><img src={trash} alt="trash button"/></button>
+            ))
+            ) : (
+              <div className="empty-area-container">
+                <img src={emptyIcon} alt="icon" />
+                <span>Nenhum no momento</span>
               </div>
-            </div>
-
-          </div>
-
-          <div className="orphanage-item">
-            <Map  className="map-styles"
-              center={[-1.3225683,-48.3735674]} 
-              zoom={16} 
-              style={{ width: '100%', height: 280 }}
-              dragging={false}
-              touchZoom={false}
-              zoomControl={false}
-              scrollWheelZoom={false}
-              doubleClickZoom={false}
-            >
-              <TileLayer 
-                url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
-              />
-              <Marker interactive={false} icon={mapIcon} position={[-1.3225683,-48.3735674]} />
-            </Map>
-            
-            <div className="orphanage-item-footer">
-              <p>Outro</p>
-              <div className="buttons">
-                <button type="button"><img src={edit} alt="edit button"/></button>
-                <button type="button"><img src={trash} alt="trash button"/></button>
-              </div>
-            </div>
-          </div>
-
-          <div className="orphanage-item">
-            <Map  className="map-styles"
-              center={[-1.3225683,-48.3735674]} 
-              zoom={16} 
-              style={{ width: '100%', height: 280 }}
-              dragging={false}
-              touchZoom={false}
-              zoomControl={false}
-              scrollWheelZoom={false}
-              doubleClickZoom={false}
-            >
-              <TileLayer 
-                url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
-              />
-              <Marker interactive={false} icon={mapIcon} position={[-1.3225683,-48.3735674]} />
-            </Map>
-            
-            <div className="orphanage-item-footer">
-              <p>Mais outro</p>
-              <div className="buttons">
-                <button type="button"><img src={edit} alt="edit button"/></button>
-                <button type="button"><img src={trash} alt="trash button"/></button>
-              </div>
-            </div>
-          </div>
-
-          <div className="orphanage-item">
-            <Map  className="map-styles"
-              center={[-1.3225683,-48.3735674]} 
-              zoom={16} 
-              style={{ width: '100%', height: 280 }}
-              dragging={false}
-              touchZoom={false}
-              zoomControl={false}
-              scrollWheelZoom={false}
-              doubleClickZoom={false}
-            >
-              <TileLayer 
-                url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
-              />
-              <Marker interactive={false} icon={mapIcon} position={[-1.3225683,-48.3735674]} />
-            </Map>
-            
-            <div className="orphanage-item-footer">
-              <p>Quinto</p>
-              <div className="buttons">
-                <button type="button"><img src={edit} alt="edit button"/></button>
-                <button type="button"><img src={trash} alt="trash button"/></button>
-              </div>
-            </div>
-          </div>
-
-          <div className="orphanage-item">
-            <Map  className="map-styles"
-              center={[-1.3225683,-48.3735674]} 
-              zoom={16} 
-              style={{ width: '100%', height: 280 }}
-              dragging={false}
-              touchZoom={false}
-              zoomControl={false}
-              scrollWheelZoom={false}
-              doubleClickZoom={false}
-            >
-              <TileLayer 
-                url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
-              />
-              <Marker interactive={false} icon={mapIcon} position={[-1.3225683,-48.3735674]} />
-            </Map>
-            
-            <div className="orphanage-item-footer">
-              <p>Sexto</p>
-              <div className="buttons">
-                <button type="button"><img src={edit} alt="edit button"/></button>
-                <button type="button"><img src={trash} alt="trash button"/></button>
-              </div>
-            </div>
-          </div>
+            )
+          }          
 
         </div>
         

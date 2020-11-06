@@ -4,6 +4,7 @@ import authConfig from '../config/auth';
 
 export default (request: Request, response: Response, next: any) => {
     const authHeader = request.headers.authorization;
+    console.log(authHeader);
 
     if(!authHeader)
         return response.status(401).send({ error: "No token provided!" });

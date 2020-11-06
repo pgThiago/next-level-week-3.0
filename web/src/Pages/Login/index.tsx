@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import '../../styles/global.css';
 import '../../styles/pages/login.css';
@@ -8,9 +8,32 @@ import '../../styles/pages/login.css';
 import logoLoginImg from '../../images/logo-login.svg';
 import { FiArrowLeft } from 'react-icons/fi';
 
+import api from '../../services/api';
+
 const Login: React.FC = () => {
 
-  function handleSubmit(){
+  const history = useHistory();
+
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+
+  async function handleSubmit(event: FormEvent){
+    event.preventDefault();
+
+    try{
+      const response = await api.post('authenticate', {
+        email, password
+      });
+
+      const { token } = response.data;
+
+      localStorage.setItem('token', token);
+
+      history.push('/dashboard');
+    }
+    catch(error){
+      console.log(error);
+    }
 
   }
 
@@ -39,10 +62,20 @@ const Login: React.FC = () => {
           <h2>Fazer login</h2>
           
           <label htmlFor="e-mail">E-mail</label>
-          <input type="text" name="e-mail" required />
+          <input 
+          type="text" 
+          name="e-mail" 
+          value={email}
+          onChange={event => setEmail(event.target.value)}
+          required />
 
           <label htmlFor="password">Senha</label>
-          <input type="password" name="password" required />
+          <input 
+          type="current-password" 
+          name="password"
+          value={password}
+          onChange={event => setPassword(event.target.value)}
+          required />
 
             <div className="checkbox-container">   
               <input type="checkbox" name="checkbox" className="checkbox" />
