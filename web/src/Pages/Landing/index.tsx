@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import '../../styles/global.css';
@@ -9,6 +9,53 @@ import logoImg from '../../images/logo.svg';
 import { FiArrowRight } from 'react-icons/fi';
 
 const Landing: React.FC = () => {
+
+  const [ initialLocation, setInitialLocation ] = useState({
+    initialLatitude: 0,
+    initialLongitude: 0,
+  });
+
+  const [ city, setCity ] = useState('');
+  const [ state, setState ] = useState('');
+
+  useEffect(() => {
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      
+      const { latitude, longitude } = position.coords;
+      setInitialLocation({
+        initialLatitude: latitude,
+        initialLongitude: longitude,
+      })
+
+    });
+
+
+  }, []);
+
+  useEffect(() => {
+    
+    async function getUserCityName(){
+      const userLocationInfo = await axios.get(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${initialLocation.initialLatitude}&longitude=${initialLocation.initialLongitude}&localityLanguage=pt-br`);
+      const { administrative } = userLocationInfo.data.localityInfo;
+      
+      const city = administrative[6].name;
+      const state = administrative[2].name;
+      
+      setCity(city);
+      setState(state);
+
+    }
+
+    if(initialLocation.initialLatitude !== 0){
+      getUserCityName();
+    }
+
+  });
+
+  useEffect(() => {
+    localStorage.clear();
+  });
 
   return (
     <div id="page-landing">
@@ -20,8 +67,8 @@ const Landing: React.FC = () => {
           <img src={logoImg} alt="Happy"/>
           
           <div className="place">
-            <strong>Ananindeua</strong>
-            <span>Pará</span>
+            <strong>{city}</strong>
+            <span>{state}</span>
           </div>
 
         </div>

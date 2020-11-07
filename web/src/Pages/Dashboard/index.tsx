@@ -66,7 +66,7 @@ const Dashboard: React.FC = () => {
     <div className="dashboard-container">
 
       <aside>
-        <Link to="/OphanagesMap"><img src={mapMarker}   alt="map-marker"           id="map-marker" />                    </Link>
+        <Link to="/app"><img src={mapMarker}   alt="map-marker"           id="map-marker" />                    </Link>
         <Link to="/dashboard"><img src={mapPin}      alt="map-pin"              id="map-pin" />                          </Link>
         { orphanagesPending.length !== 0 && (
           <img src={alertCircleElilipse}      alt="alert-circle-ellipse" id="alert-circle-ellipse" />
@@ -109,8 +109,35 @@ const Dashboard: React.FC = () => {
                 <div className="orphanage-item-footer">
                   <p>{orphanage.name}</p>
                   <div className="buttons">
-                    <button type="button"><img src={edit} alt="edit button"/></button>
-                    <button type="button"><img src={trash} alt="trash button"/></button>
+                   
+                    <button 
+                    type="button"
+                    onClick={() => {
+                      history.push({
+                        pathname: `/orphanages/edit/${orphanage.id}`,
+                        state: { 
+                          orphanage
+                        }
+                      })
+                    }}
+                    >
+                   
+                    <img src={edit} 
+                    alt="edit button"/>                   
+                    
+                    </button>
+                   
+                    <button onClick={() => { 
+                      history.push({
+                        pathname: `/orphanages/delete/${orphanage.id}`,
+                        state: { id: orphanage.id, name: orphanage.name }
+                      })
+                    }} 
+                      type="button"><img 
+                      src={trash} 
+                      alt="trash button"/>
+                    </button>
+
                   </div>
                 </div>
               </div>     

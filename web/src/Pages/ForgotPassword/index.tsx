@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import '../../styles/global.css';
 import '../../styles/pages/login.css';
@@ -9,10 +9,20 @@ import '../../styles/pages/forgot-password.css';
 import logoLoginImg from '../../images/logo-login.svg';
 import { FiArrowLeft } from 'react-icons/fi';
 
+import api from '../../services/api';
+
 const ForgotPassword: React.FC = () => {
 
-  function handleSubmit(){
+  const history = useHistory();
 
+  const [ email, setEmail ] = useState('');
+
+  async function handleSubmit(event: FormEvent){
+    event.preventDefault();
+    await api.post('forgot_password', {
+      email
+    })
+    history.push('/new_password');
   }
 
   return (
@@ -41,7 +51,13 @@ const ForgotPassword: React.FC = () => {
           <span>Sua redefinição de senha será enviada para o e-mail cadastrado.</span>
           
           <label htmlFor="e-mail">E-mail</label>
-          <input type="text" name="e-mail" required />         
+          <input 
+          type="text" 
+          name="e-mail" 
+          required
+          value={email}
+          onChange={event => setEmail(event.target.value)}
+          />         
 
           <button type="submit" className="submit-button">Enviar</button>
 

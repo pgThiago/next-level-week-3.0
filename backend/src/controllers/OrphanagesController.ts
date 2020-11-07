@@ -114,4 +114,17 @@ export default {
 
         return response.status(200).json({ ok: true });        
     },
+
+    async delete(request: Request, response: Response){
+
+        const { id } = request.params;
+
+        await getConnection()
+        .createQueryBuilder()
+        .delete()
+        .from(Orphanage)
+        .where("id = :id", { id })
+        .execute();
+    }
+
 }

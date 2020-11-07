@@ -1,0 +1,18 @@
+.img-delete-button-container {
+    position: relative;
+}
+.delete-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+}
+
+.delete-img-icon {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}

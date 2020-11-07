@@ -14,6 +14,7 @@ routes.get('/orphanages', OrphanagesController.index);
 routes.get('/orphanages_pending', OrphanagesController.indexPending);
 routes.get('/orphanage/:id', OrphanagesController.show);
 routes.post('/orphanages', upload.array('images'), OrphanagesController.create);
+routes.delete('/orphanage/:id', authMiddleware, OrphanagesController.delete);
 
 routes.post('/create/user', UsersController.create);
 routes.post('/authenticate', UsersController.login);

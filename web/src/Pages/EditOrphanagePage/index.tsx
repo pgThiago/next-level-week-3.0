@@ -1,13 +1,14 @@
 import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
-import { FiPlus } from "react-icons/fi";
+import { FiPlus, FiX } from "react-icons/fi";
 import mapIcon from '../../utils/mapIcon';
 import '../../styles/pages/create-orphanage.css';
+import '../../styles/pages/edit-orphanage-page.css';
 import Sidebar from "../components/Sidebar";
 
 import api from '../../services/api';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 
 const EditOrphanagePage: React.FC = () => {
 
@@ -17,29 +18,44 @@ const EditOrphanagePage: React.FC = () => {
   });
 
   const history = useHistory();
+  const location = useLocation<any>();
+  
+  const { 
+    id: apiId, 
+    about: apiAbout, 
+    images: apiImages, 
+    instructions: apiInstructions, 
+    latitude: apiLatitude, 
+    longitude: apiLongitude, 
+    name: apiName, 
+    opening_hours: apiOpening_hours, 
+    open_on_weekends: apiOpen_on_weekends, 
+    whatsapp: apiWhatsapp
+  } = location.state.orphanage;
 
-  const [ name, setName ] = useState('');
-  const [ whatsapp, setWhatsapp ] = useState('');
-  const [ about, setAbout ] = useState('');
-  const [ instructions, setInstructions ] = useState('');
-  const [ opening_hours, setOpeningHours ] = useState('');
-  const [ open_on_weekends, setOpenOnWeekends ] = useState(true);
+  const [ name, setName ] = useState(apiName);
+  const [ whatsapp, setWhatsapp ] = useState(apiWhatsapp);
+  const [ about, setAbout ] = useState(apiAbout);
+  const [ instructions, setInstructions ] = useState(apiInstructions);
+  const [ opening_hours, setOpeningHours ] = useState(apiOpening_hours);
+  const [ open_on_weekends, setOpenOnWeekends ] = useState(apiOpen_on_weekends);
   const [ images, setImages ] = useState<File[]>([]);
   const [ previewImages, setPreviewImages ] = useState<string[]>([]);
+  const [ previewImagesFromApi, setPreviewImagesFromApi ] = useState<string[]>([]);
 
   const [ initialLocation, setInitialLocation ] = useState({
-    initialLatitude: 0,
-    initialLongitude: 0,
+    initialLatitude: apiLatitude,
+    initialLongitude: apiLongitude,
   });
 
   useEffect(() => {
 
+    
     navigator.geolocation.getCurrentPosition((position) => {
       
-      const { latitude, longitude } = position.coords;
       setInitialLocation({
-        initialLatitude: latitude,
-        initialLongitude: longitude,
+        initialLatitude: apiLatitude,
+        initialLongitude: apiLongitude,
       })
 
     });
@@ -62,7 +78,7 @@ const EditOrphanagePage: React.FC = () => {
     const { latitude, longitude } = position;
 
     const data = new FormData();
-
+    
     data.append('name', name);
     data.append('whatsapp', whatsapp);
     data.append('about', about);
@@ -78,25 +94,55 @@ const EditOrphanagePage: React.FC = () => {
 
     await api.post('orphanages', data);
 
-    alert('Cadastro realizado com sucesso');
-
-    history.push('/app');
-
+    history.push('/dashboard');
+    
+  }
+  
+  
+  function pushImagesPreviewFromApi(){
+    let imagesArray: any[] = [];
+    apiImages.map((image: any) => {
+      imagesArray.push(image.url);
+    })
+    
+    setPreviewImagesFromApi(imagesArray);
+    setPreviewImages(imagesArray);
+    
   }
 
+  useEffect(() => {
+    
+    pushImagesPreviewFromApi();
+
+  }, []);
+  
   function handleSelectImages(event: ChangeEvent<HTMLInputElement>){
     if(!event.target.files)
-      return
-
+    return
+    
     const selectedImages = Array.from(event.target.files);
-
+    
     setImages(selectedImages);
-
+    
     const selectedImagesPreview = selectedImages.map(image => {
       return URL.createObjectURL(image);
     });
 
-    setPreviewImages(selectedImagesPreview);
+    setPreviewImages(previewImages.concat(selectedImagesPreview));
+
+  }
+
+  function deleteImage(e: FormEvent, imgIndexToDelete: any, arrayImages: any) {
+    e.preventDefault();
+    let previewImagesAfterDelete: any[] = [];
+
+    arrayImages.map((img: any, index: any) => {
+      if(index !== imgIndexToDelete){
+        previewImagesAfterDelete.push(img);
+      }
+    })
+    
+    setPreviewImages(previewImagesAfterDelete);
 
   }
   
@@ -113,15 +159,15 @@ const EditOrphanagePage: React.FC = () => {
 
             {
               initialLocation.initialLatitude !== 0 && (
-                  <Map 
+                <Map 
                 center={[initialLocation.initialLatitude, initialLocation.initialLongitude]} 
                 style={{ width: '100%', height: 280 }}
                 zoom={15}
                 onclick={handleMapClick}
               >
-                <TileLayer 
-                  url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
-                />
+<TileLayer 
+  url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+/>
                 
                 { 
                   position.latitude !== 0 && (
@@ -165,9 +211,14 @@ const EditOrphanagePage: React.FC = () => {
 
               <div className="images-container">
 
-                { previewImages.map(prevImage => {
+                { previewImages.map((prevImage, index) => {
                   return (
-                    <img key={prevImage} src={prevImage} alt={name}/>
+                    <div className="img-delete-button-container">
+                      <Link to="#" className="delete-button" onClick={(e) => { deleteImage(e, index, previewImages) }} >
+                        <FiX size={30} color="#FF70A3" className="delete-img-icon" />
+                      </Link>
+                      <img key={prevImage} src={prevImage} alt={name}/>
+                    </div>
                   )
                 }) }
 

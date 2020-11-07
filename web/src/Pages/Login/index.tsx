@@ -1,5 +1,5 @@
-import React, { FormEvent, useState } from 'react';
-
+import React, { FormEvent, useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 
 import '../../styles/global.css';
@@ -17,6 +17,33 @@ const Login: React.FC = () => {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
+  const [ initialLocation, setInitialLocation ] = useState({
+    initialLatitude: 0,
+    initialLongitude: 0,
+  });
+
+  const [ city, setCity ] = useState('');
+  const [ state, setState ] = useState('');
+
+  useEffect(() => {
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      
+      const { latitude, longitude } = position.coords;
+      setInitialLocation({
+        initialLatitude: latitude,
+        initialLongitude: longitude,
+      })
+
+    });
+
+
+  }, []);
+
+  useEffect(() => {
+    localStorage.clear();
+  });
+
   async function handleSubmit(event: FormEvent){
     event.preventDefault();
 
@@ -32,10 +59,31 @@ const Login: React.FC = () => {
       history.push('/dashboard');
     }
     catch(error){
+      alert('Incorrect password');
       console.log(error);
     }
 
   }
+
+  useEffect(() => {
+    
+    async function getUserCityName(){
+      const userLocationInfo = await axios.get(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${initialLocation.initialLatitude}&longitude=${initialLocation.initialLongitude}&localityLanguage=pt-br`);
+      const { administrative } = userLocationInfo.data.localityInfo;
+      
+      const city = administrative[6].name;
+      const state = administrative[2].name;
+      
+      setCity(city);
+      setState(state);
+
+    }
+
+    if(initialLocation.initialLatitude !== 0){
+      getUserCityName();
+    }
+
+  });
 
   return (
     <div className="container">
@@ -45,8 +93,8 @@ const Login: React.FC = () => {
         <img src={logoLoginImg} alt="Happy"/>
 
         <div className="place">
-            <strong>Ananindeua</strong>
-            <span>Pará</span>
+            <strong>{city}</strong>
+            <span>{state}</span>
         </div>
 
       </main>
@@ -71,7 +119,8 @@ const Login: React.FC = () => {
 
           <label htmlFor="password">Senha</label>
           <input 
-          type="current-password" 
+          type="password" 
+          security="password"
           name="password"
           value={password}
           onChange={event => setPassword(event.target.value)}
@@ -80,7 +129,7 @@ const Login: React.FC = () => {
             <div className="checkbox-container">   
               <input type="checkbox" name="checkbox" className="checkbox" />
               <p>Lembrar-me</p>
-              <Link to="forgot-password" className="forgot-password">Esqueci minha senha</Link>
+              <Link to="forgot_password" className="forgot-password">Esqueci minha senha</Link>
             </div>            
 
           <button type="submit" className="submit-button">Entrar</button>

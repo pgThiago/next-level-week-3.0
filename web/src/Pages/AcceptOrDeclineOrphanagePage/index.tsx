@@ -7,11 +7,17 @@ import '../../styles/pages/accept-or-decline-orphanage-page.css';
 import Sidebar from "../components/Sidebar";
 
 import api from '../../services/api';
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useHistory } from "react-router-dom";
 
 const AcceptOrDeclineOrphanagePage: React.FC = () => {
 
+  const history = useHistory();
   const location = useLocation<any>();
+  
+  const token = localStorage.getItem('token');
+
+  if(!token)
+    history.push('/');  
   
   const { 
     id, 
@@ -24,13 +30,10 @@ const AcceptOrDeclineOrphanagePage: React.FC = () => {
     opening_hours, 
     images, about } = location.state.data;
   
-  const token = localStorage.getItem('token');
-  
   async function acceptOrphanage(){
     
-    console.log(typeof token);
     try{
-      const response = await api.post('accept_orphanage/', {
+      await api.post('accept_orphanage/', {
         id
       },{
         headers: {
@@ -39,8 +42,7 @@ const AcceptOrDeclineOrphanagePage: React.FC = () => {
       }
       );
     }
-    catch(error){
-            
+    catch(error){            
       console.error(error);
     }
     

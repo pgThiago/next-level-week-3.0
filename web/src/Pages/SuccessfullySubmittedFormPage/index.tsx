@@ -11,13 +11,13 @@ const SuccessfullySubmittedFormPage: React.FC = () => {
     <div className="successfully-submitted-page-container">
 
       <div className="text-side">
-        <Link to="dashboard" onClick={ () => {} } className="delete-button">
+        <Link to="/app" className="delete-button">
           Ebaaa!
         </Link>
 
         <span>O cadastro deu certo e foi enviado ao administrador para ser aprovado. Agora é só esperar :)</span>
 
-        <Link to="dashboard" onClick={ () => {} } className="back-to-map-button">
+        <Link to="/app" className="back-to-map-button">
           Voltar para o mapa
         </Link>
       </div>

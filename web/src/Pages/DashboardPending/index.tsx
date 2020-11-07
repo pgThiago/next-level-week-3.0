@@ -31,8 +31,10 @@ const DashboardPending: React.FC = () => {
   const [ orphanages, setOrphanages ] = useState<Orphanage[]>([]);
 
   const token = localStorage.getItem('token');
-  if(!token)
+  if(!token){
     history.push('/');
+    window.location.reload();
+  }
 
   useEffect(() => {
     async function getOrphanages(){
@@ -51,7 +53,7 @@ const DashboardPending: React.FC = () => {
     <div className="pending-container">
 
       <aside>
-        <Link to="/orphanagesmap"><img src={mapMarker}   alt="map-marker"  id="map-marker" />   </Link>
+        <Link to="/app"><img src={mapMarker}   alt="map-marker"  id="map-marker" />   </Link>
         <Link to="/dashboard"><img src={mapPin}      alt="map-pin"     id="map-pin" />      </Link>
         <Link to="/dashboard/pending-orphanages"><img src={yellowAlertCircle} alt="alert-circle"id="alert-circle" /> </Link>
         <Link to="/"><img src={logOut}      alt="log-out"     id="log-out" />      </Link>

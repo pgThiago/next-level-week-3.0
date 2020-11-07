@@ -77,9 +77,8 @@
     font-weight: bold;
     font-size: 32px;
     line-height: 34px;
-    /* identical to box height, or 106% */
-    /* Texts / Títulos */
     color: #4D6F80;
+    padding-bottom: 3vh;
 }
 
 .pending-container main header p {
@@ -88,10 +87,10 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
-    /* identical to box height */
     text-align: right;
-    /* Texts / Complementos */
     color: #8FA7B3;
+    padding-bottom: 3vh;
+
 }
 
 .pending-container main .orphanage-grid {    

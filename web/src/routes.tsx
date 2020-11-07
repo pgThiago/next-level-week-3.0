@@ -35,8 +35,8 @@ const Routes: React.FC = () => {
                 <Route exact path="/dashboard/accept-or-decline" component={AcceptOrDeclineOrphanagePage} />
                 <Route exact path="/dashboard/pending-orphanages" component={DashboardPending} />
                 
-                <Route exact path="/forgot-password" component={ForgotPassword} />
-                <Route exact path="/new-password" component={SetNewPassword} />
+                <Route exact path="/forgot_password" component={ForgotPassword} />
+                <Route exact path="/new_password" component={SetNewPassword} />
                 
             </Switch>
         </BrowserRouter>
