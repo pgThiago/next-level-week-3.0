@@ -47,11 +47,13 @@ Click on links below to see the web and mobile layouts. A [Figma](http://figma.c
 ## 🧠 Challenges:
 
 - [Challenges Happy 2.0](https://www.notion.so/Vers-o-2-0-do-Happy-c754db7a4d41469e8c2d00fcf75392c4)
+### [API](https://www.bigdatacloud.com/blog/convert-getcurrentposition-free-reversegeocoding-api) to get user's city name used in 2.0 version.
 
 ## :memo: License
 
 This project is under MIT license. Check the file [LICENSE](LICENSE.md) for more details.
 
 ---
+
 
 Made with ♥ by Rocketseat :wave: [Join us!](https://discordapp.com/invite/gCRAFhc)
