@@ -9,9 +9,8 @@ import mapMarker from '../../../images/map-marker-big.png';
 const Intro01: React.FC = () => {
 
   const { navigate } = useNavigation(); 
-  const isFocused = useIsFocused(); 
 
-  useFocusEffect(() => {
+ useFocusEffect(() => {
     setTimeout(() => {
       navigate('Intro02');
     }, 1000);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { Text, View, AsyncStorage } from 'react-native';
 import MapView, { Marker, Callout , PROVIDER_GOOGLE } from 'react-native-maps';
 
 import MapMarker from '../../images/map-marker.png';
@@ -32,6 +32,10 @@ const OrphanagesMap: React.FC = () => {
     initialLongitude: 0,
   });
 
+  function setFirstTimeOnApp() {
+    AsyncStorage.setItem('firstTime', 'true');
+  }
+
   useEffect(() => {
     async function getUserInitialPosition(){
       const { status } = await Location.requestPermissionsAsync();
@@ -55,6 +59,8 @@ const OrphanagesMap: React.FC = () => {
   }, [initialLocation.initialLatitude, initialLocation.initialLatitude]);
 
   useFocusEffect(() => {
+
+    setFirstTimeOnApp();
     
     async function getOrphanages(){
       const response = await api.get('orphanages');
@@ -82,8 +88,8 @@ const OrphanagesMap: React.FC = () => {
           provider={PROVIDER_GOOGLE}
           style={styles.map} 
           initialRegion={{ 
-        latitude: 38.897994,
-        longitude: -77.036519,
+        latitude: initialLocation.initialLatitude,
+        longitude: initialLocation.initialLongitude,
         latitudeDelta: 0.008,
         longitudeDelta: 0.008
       }}      

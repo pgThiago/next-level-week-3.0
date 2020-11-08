@@ -41,7 +41,6 @@ const EditOrphanagePage: React.FC = () => {
   const [ open_on_weekends, setOpenOnWeekends ] = useState(apiOpen_on_weekends);
   const [ images, setImages ] = useState<File[]>([]);
   const [ previewImages, setPreviewImages ] = useState<string[]>([]);
-  const [ previewImagesFromApi, setPreviewImagesFromApi ] = useState<string[]>([]);
 
   const [ initialLocation, setInitialLocation ] = useState({
     initialLatitude: apiLatitude,
@@ -105,7 +104,6 @@ const EditOrphanagePage: React.FC = () => {
       imagesArray.push(image.url);
     })
     
-    setPreviewImagesFromApi(imagesArray);
     setPreviewImages(imagesArray);
     
   }

@@ -1,13 +1,16 @@
 import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
-import { FiPlus } from "react-icons/fi";
+import { FiPlus, FiX } from "react-icons/fi";
 import mapIcon from '../../utils/mapIcon';
-import '../../styles/pages/create-orphanage.css';
 import Sidebar from "../components/Sidebar";
 
+import '../../styles/pages/create-orphanage.css';
+import '../../styles/pages/edit-orphanage-page.css';
+
+
 import api from '../../services/api';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 export default function CreateOrphanage() {
 
@@ -94,7 +97,21 @@ export default function CreateOrphanage() {
       return URL.createObjectURL(image);
     });
 
-    setPreviewImages(selectedImagesPreview);
+    setPreviewImages(previewImages.concat(selectedImagesPreview));
+
+  }
+
+  function deleteImage(e: FormEvent, imgIndexToDelete: any, arrayImages: any) {
+    e.preventDefault();
+    let previewImagesAfterDelete: any[] = [];
+
+    arrayImages.map((img: any, index: any) => {
+      if(index !== imgIndexToDelete){
+        previewImagesAfterDelete.push(img);
+      }
+    })
+    
+    setPreviewImages(previewImagesAfterDelete);
 
   }
   
@@ -163,9 +180,14 @@ export default function CreateOrphanage() {
 
               <div className="images-container">
 
-                { previewImages.map(prevImage => {
+                { previewImages.map((prevImage, index) => {
                   return (
-                    <img key={prevImage} src={prevImage} alt={name}/>
+                    <div className="img-delete-button-container">
+                      <Link to="#" className="delete-button" onClick={(e) => { deleteImage(e, index, previewImages) }} >
+                        <FiX size={30} color="#FF70A3" className="delete-img-icon" />
+                      </Link>
+                      <img key={prevImage} src={prevImage} alt={name}/>
+                    </div>
                   )
                 }) }
 

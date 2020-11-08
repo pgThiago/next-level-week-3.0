@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   position: 'relative',
   zIndex: 2,
   width: Dimensions.get('screen').width,
-  height: Dimensions.get('screen').height
+  height: Dimensions.get('screen').height,
 },
 
 cursorSelectHand: {

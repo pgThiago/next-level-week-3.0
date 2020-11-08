@@ -35,8 +35,10 @@ const routes: React.FC = () => {
         <Stack.Screen name="OnBoardingOne" component={OnBoardingOne} />
         <Stack.Screen name="OnBoardingTwo" component={OnBoardingTwo} />
         <Stack.Screen name="OrphanagesMap" component={OrphanagesMap} />
+        
         <Stack.Screen name="Intro01" component={Intro01} />
         <Stack.Screen name="Intro02" component={Intro02} />
+        
         <Stack.Screen name="SuccessfullySubmittedPage" component={SuccessfullySubmittedPage} />
         <Stack.Screen name="CancelOrphanageCreationPage" component={CancelOrphanageCreationPage} />
 
@@ -75,3 +77,6 @@ const routes: React.FC = () => {
 }
 
 export default routes;
+
+{/* <Stack.Screen name="Intro01" component={Intro01} />
+<Stack.Screen name="Intro02" component={Intro02} /> */}
