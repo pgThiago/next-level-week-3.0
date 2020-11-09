@@ -39,26 +39,18 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     async function getOrphanages(){
-      
       const response = await api.get('orphanages_pending');
       setOrphanagesPending(response.data);
-
     }
-
     getOrphanages();
-
   }, []);
 
   useEffect(() => {
     async function getOrphanages(){
-      
       const response = await api.get('orphanages');
       setOrphanages(response.data);
-
     }
-
     getOrphanages();
-
   }, []);
 
   return (

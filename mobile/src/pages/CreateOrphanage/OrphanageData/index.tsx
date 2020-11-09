@@ -22,40 +22,13 @@ export default function OrphanageData() {
   const [ name, setName ] = useState('');
   const [ whatsapp, setWhatsapp ] = useState('');
   const [ about, setAbout ] = useState('');
-  const [ instructions, setInstructions ] = useState('');
-  const [ opening_hours, setOpeningHours ] = useState('');
-  const [ open_on_weekends, setOpenOnWeekends ] = useState(true);
   const [ images, setImages ] = useState<string[]>([]);
 
   const { navigate } = useNavigation();
 
-
-
-  async function handleCreateOrphanage(){
+  function handleContinueOrphanageCreation(){
     const { latitude, longitude } = params.position;
-    const data = new FormData();
-
-    data.append('name', name);
-    data.append('whatsapp', whatsapp);
-    data.append('about', about);
-    data.append('latitude', String(latitude));
-    data.append('longitude', String(longitude));
-    data.append('instructions', instructions);
-    data.append('opening_hours', opening_hours);
-    data.append('open_on_weekends', String(open_on_weekends));
-    
-    images.forEach((image, index) => {
-      data.append('images', {
-        name: `image_${index}.jpg`,
-        type: 'image/jpg',
-        uri: image
-      } as any );
-    })
-
-    await api.post('orphanages', data);
-    
-    navigate('OrphanagesMap');
-
+    navigate('OrphanageData02', { name, whatsapp, about, images, latitude, longitude });
   }
 
   async function handleSelectImages(){
@@ -84,7 +57,11 @@ export default function OrphanageData() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
-      <Text style={styles.title}>Dados</Text>
+      <View>
+        <Text style={styles.title}>Dados</Text>
+        <Text style={styles.subTitleBold}>01 -</Text>
+        <Text style={styles.subTitle}>02</Text>
+      </View>
 
       <Text style={styles.label}>Nome</Text>
       <TextInput
@@ -122,37 +99,10 @@ export default function OrphanageData() {
 
       <TouchableOpacity style={styles.imagesInput} onPress={handleSelectImages}>
         <Feather name="plus" size={24} color="#15B6D6" />
-      </TouchableOpacity>
+      </TouchableOpacity>      
 
-      <Text style={styles.title}>Visitação</Text>
-
-      <Text style={styles.label}>Instruções</Text>
-      <TextInput
-        style={[styles.input, { height: 110 }]}
-        multiline
-        value={instructions}
-        onChangeText={(text) => setInstructions(text)}
-      />
-
-      <Text style={styles.label}>Horario de visitas</Text>
-      <TextInput
-        style={styles.input}
-        value={opening_hours}
-        onChangeText={(text) => setOpeningHours(text)}
-      />
-
-      <View style={styles.switchContainer}>
-        <Text style={styles.label}>Atende final de semana?</Text>
-        <Switch 
-          thumbColor="#fff" 
-          trackColor={{ false: '#ccc', true: '#39CC83' }}
-          value={open_on_weekends}
-          onValueChange={setOpenOnWeekends}
-        />
-      </View>
-
-      <RectButton style={styles.nextButton} onPress={handleCreateOrphanage}>
-        <Text style={styles.nextButtonText}>Cadastrar</Text>
+      <RectButton style={styles.nextButton} onPress={handleContinueOrphanageCreation}>
+        <Text style={styles.nextButtonText}>Próximo</Text>
       </RectButton>
     </ScrollView>
   )
@@ -171,6 +121,24 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
     borderBottomWidth: 0.8,
     borderBottomColor: '#D3E2E6'
+  },
+
+  subTitleBold: {
+    color: '#5c8599',
+    fontFamily: 'Nunito_700Bold',
+    
+    position: 'absolute',
+    right: 20,
+    top: 7,
+  },
+
+  subTitle: {
+    color: '#5c8599',
+    fontFamily: 'normal',
+
+    position: 'absolute',
+    right: 0,
+    top: 7,
   },
 
   label: {

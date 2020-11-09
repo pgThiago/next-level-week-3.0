@@ -104,15 +104,11 @@ export default function CreateOrphanage() {
   function deleteImage(e: FormEvent, imgIndexToDelete: any, arrayImages: any) {
     e.preventDefault();
     let previewImagesAfterDelete: any[] = [];
-
-    arrayImages.map((img: any, index: any) => {
-      if(index !== imgIndexToDelete){
-        previewImagesAfterDelete.push(img);
-      }
-    })
-    
+    for(let i = 0; i < arrayImages.length; i++){
+      if(i !== imgIndexToDelete)
+        previewImagesAfterDelete.push(arrayImages[i]);
+    }
     setPreviewImages(previewImagesAfterDelete);
-
   }
   
   return (

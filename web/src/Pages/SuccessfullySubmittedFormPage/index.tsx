@@ -11,7 +11,7 @@ const SuccessfullySubmittedFormPage: React.FC = () => {
     <div className="successfully-submitted-page-container">
 
       <div className="text-side">
-        <Link to="/app" className="delete-button">
+        <Link to="/app" className="ebaa-button">
           Ebaaa!
         </Link>
 

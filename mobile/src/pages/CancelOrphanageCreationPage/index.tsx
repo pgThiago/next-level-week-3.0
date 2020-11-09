@@ -8,7 +8,7 @@ import { RectButton } from 'react-native-gesture-handler';
 
 const CancelOrphanageCreationPage: React.FC = () => {
 
-  const { navigate } = useNavigation();
+  const { navigate, goBack } = useNavigation();
 
   const [ yesIsPressed, setYesIsPressed ] = useState(false);
   const [ noIsPressed, setNoIsPressed ] = useState(false);
@@ -42,14 +42,18 @@ const CancelOrphanageCreationPage: React.FC = () => {
         <View style={styles.buttonsContainer}>
           <TouchableOpacity style={[styles.noButton, noIsPressed ? styles.selectedButton : styles.noButton]} onPress={() => {
             toggleNoButtonColor()
-            handleNavigate()
+            setTimeout(() => {
+              goBack()
+            }, 100)
           }}>
             <Text style={styles.buttonText}>Não</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={[styles.yesButton, yesIsPressed ? styles.selectedButton : styles.yesButton]} onPress={() => {
             toggleYesButtonColor()
-            handleNavigate()
+            setTimeout(() => {
+              handleNavigate()
+            }, 100)
           }}>
             <Text style={styles.buttonText}>Sim</Text>
           </TouchableOpacity>

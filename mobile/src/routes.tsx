@@ -7,6 +7,7 @@ import OrphanagesMap from './pages/OrphanagesMap';
 import OrphanageDetails from './pages/OrphanageDetails';
 
 import OrphanageData from './pages/CreateOrphanage/OrphanageData';
+import OrphanageData02 from './pages/CreateOrphanage/OrphanageData02';
 import SelectMapPosition from './pages/CreateOrphanage/SelectMapPosition';
 import Header from './components/Header';
 
@@ -54,6 +55,16 @@ const routes: React.FC = () => {
         <Stack.Screen 
         name="OrphanageData" 
         component={OrphanageData} 
+        options={{
+          headerShown: true,
+          header: () => <Header title="Informe os dados" />
+        }}
+
+        />
+
+        <Stack.Screen 
+        name="OrphanageData02" 
+        component={OrphanageData02} 
         options={{
           headerShown: true,
           header: () => <Header title="Informe os dados" />

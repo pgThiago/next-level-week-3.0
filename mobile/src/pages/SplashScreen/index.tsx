@@ -24,12 +24,12 @@ const SplashScreen: React.FC = () => {
     if(isFirstTime === 'true'){
       setTimeout(() => {
         navigate('OrphanagesMap');
-      }, 3000);
+      }, 7000);
     }
     else{
       setTimeout(() => {
         navigate('OnBoardingOne');
-    }, 3000);
+    }, 7000);
     }
   }      
 

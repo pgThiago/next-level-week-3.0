@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 interface HeaderProps{
   title: string;
@@ -13,9 +13,13 @@ interface HeaderProps{
 const Header: React.FC<HeaderProps> = ( { title, showCancel = true } ) => {
 
   const { goBack, navigate } = useNavigation();
-
+  const { name: routeName } = useRoute();  
+  
   function handleToHome(){
-    navigate('OrphanagesMap');
+    if(routeName === 'OrphanageData' || routeName === 'OrphanageData02')
+      navigate('CancelOrphanageCreationPage');
+    else
+      navigate('OrphanagesMap');
   }
 
   return (

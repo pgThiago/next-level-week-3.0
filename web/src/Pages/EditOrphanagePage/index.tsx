@@ -21,7 +21,6 @@ const EditOrphanagePage: React.FC = () => {
   const location = useLocation<any>();
   
   const { 
-    id: apiId, 
     about: apiAbout, 
     images: apiImages, 
     instructions: apiInstructions, 
@@ -59,7 +58,7 @@ const EditOrphanagePage: React.FC = () => {
 
     });
 
-  }, []);
+  });
 
 
 
@@ -99,20 +98,16 @@ const EditOrphanagePage: React.FC = () => {
   
   
   function pushImagesPreviewFromApi(){
-    let imagesArray: any[] = [];
-    apiImages.map((image: any) => {
-      imagesArray.push(image.url);
-    })
-    
+    let imagesArray: any[] = [];    
+    for(let i = 0; i < apiImages.length; i++){
+      imagesArray.push(apiImages[i].url);
+    }
     setPreviewImages(imagesArray);
-    
   }
 
   useEffect(() => {
-    
     pushImagesPreviewFromApi();
-
-  }, []);
+  });
   
   function handleSelectImages(event: ChangeEvent<HTMLInputElement>){
     if(!event.target.files)
@@ -133,15 +128,11 @@ const EditOrphanagePage: React.FC = () => {
   function deleteImage(e: FormEvent, imgIndexToDelete: any, arrayImages: any) {
     e.preventDefault();
     let previewImagesAfterDelete: any[] = [];
-
-    arrayImages.map((img: any, index: any) => {
-      if(index !== imgIndexToDelete){
-        previewImagesAfterDelete.push(img);
-      }
-    })
-    
+    for(let i = 0; i < arrayImages.length; i++) {
+      if(i !== imgIndexToDelete)
+        previewImagesAfterDelete.push(arrayImages[i]);
+    }
     setPreviewImages(previewImagesAfterDelete);
-
   }
   
   return (
