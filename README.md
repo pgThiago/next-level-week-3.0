@@ -4,6 +4,17 @@
     <img alt="Happy" title="Happy" src=".github/logo.svg" />
 </h1>
 
+## 🧠 2.0 version challenges i did:
+  ### ✔️ User authentication.
+  ### ✔️ Password recovery.
+  ### ✔️ orphanage registration.
+  ### ✔️ Splash Screen.
+  ### ✔️ User onboarding.
+  ### ✔️ User real location.
+  ### ✔️ Multiple-step registration.
+  ### ✔️ Logout.
+  ### ❌ Deploy.
+
 <p align="center">
   <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
