@@ -7,6 +7,8 @@
 
 ### [API](https://www.bigdatacloud.com/blog/convert-getcurrentposition-free-reversegeocoding-api) to get user's city name used in 2.0 version.
 
+---
+
 ## 🧠 2.0 version challenges i did:
   ### ✔️ User authentication.
   ### ✔️ Password recovery.
@@ -67,6 +69,5 @@ Click on links below to see the web and mobile layouts. A [Figma](http://figma.c
 This project is under MIT license. Check the file [LICENSE](LICENSE.md) for more details.
 
 ---
-
 
 Made with ♥ by Rocketseat :wave: [Join us!](https://discordapp.com/invite/gCRAFhc)
