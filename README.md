@@ -9,7 +9,7 @@
 
 ---
 
-## 🧠 2.0 version challenges i did:
+## 🧠 2.0 version | challenges I've accomplished:
   ### ✔️ User authentication.
   ### ✔️ Password recovery.
   ### ✔️ Orphanage registration.
